@@ -30,7 +30,7 @@ class Artist
   def update(name, stage_id)
     self.name = name 
     self.stage_id = stage_id 
-    @@artists[self.id] = Artist.new(self.name, self.album_id, self.id)
+    @@artists[self.id] = Artist.new(self.name, self.stage_id, self.id)
   end
 
   def delete 
@@ -41,7 +41,7 @@ class Artist
     @@artists ={}
   end
 
-  def self.find_by_album(stage_id)
+  def self.find_by_stage(stage_id)
     artists = []
     @@artists.values.each do |artist|
       if artist.stage_id == stage_id

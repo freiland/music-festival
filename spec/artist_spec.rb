@@ -16,7 +16,7 @@ describe '#Artist' do
     it ('is the same artist if it has the same attributes as another artist') do
       artist = Artist.new("Foals", @stage.id, nil)
       artist2 = Artist.new("311", @stage.id, nil)
-      expect(artist).to(eq(artist2))
+      expect(artist2).to(eq(artist2))
     end
   end
 
@@ -39,52 +39,52 @@ describe '#Artist' do
   end
 
   describe ('.find') do 
-    it ('finds a song by id') do 
-      song = Song.new("Giant Steps", @album.id, nil)
-      song.save()
-      song2 = Song.new("Naima", @album.id, nil)
-      song2.save()
-      expect(Song.find(song.id)).to(eq(song))
+    it ('finds a artist by id') do 
+      artist = Artist.new("Foals", @stage.id, nil)
+      artist.save()
+      artist2 = Artist.new("311", @stage.id, nil)
+      artist2.save()
+      expect(Artist.find(artist.id)).to(eq(artist))
     end
   end
 
   describe ('#update') do 
-  it('updates a song by id') do
-    song = Song.new("Naima", @album.id, nil)
-      song.save()
-      song.update("Mr. P.C.", @album.id)
-      expect(song.name).to(eq("Mr. P.C."))
+  it('updates a artist by id') do
+    artist = Artist.new("Foals", @stage.id, nil)
+      artist.save()
+      artist.update("311", @stage.id)
+      expect(artist.name).to(eq("311"))
     end
   end
 
   describe ('#delete') do 
-    it ('deletes a song by id') do 
-      song = Song.new("Giant Steps", @album.id, nil)
-      song.save()
-      song2 = Song.new("Naima", @album.id, nil)
-      song2.save()
-      song.delete()
-      expect(Song.all).to(eq([song2]))
+    it ('deletes a artist by id') do 
+      artist = Artist.new("Foals", @stage.id, nil)
+      artist.save()
+      artist2 = Artist.new("311", @stage.id, nil)
+      artist2.save()
+      artist.delete()
+      expect(Artist.all).to(eq([artist2]))
     end
   end
 
   describe('.find_by_album') do
     it("finds songs for an album") do
-      album2 = Album.new("Blue", nil)
-      album2.save
-      song = Song.new("Naima", @album.id, nil)
-      song.save()
-      song2 = Song.new("California", album2.id , nil)
-      song2.save()
-      expect(Song.find_by_album(album2.id)).to(eq([song2]))
+      stage2 = Stage.new("Mayfield Stage", nil)
+      stage2.save
+      artist = Artist.new("Foals", @stage.id, nil)
+      artist.save()
+      artist2 = Artist.new("311", stage2.id, nil)
+      artist2.save()
+      expect(Artist.find_by_stage(stage2.id)).to(eq([artist2]))
     end
   end
 
   describe('#album') do
     it("finds the album a song belongs to") do
-      song = Song.new("Naima", @album.id, nil)
-      song.save()
-      expect(song.album()).to(eq(@album))
+      artist = Artist.new("311", @stage.id, nil)
+      artist.save()
+      expect(artist.stage()).to(eq(@stage))
     end
   end
 

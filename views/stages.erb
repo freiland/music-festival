@@ -1,0 +1,16 @@
+<div class="container">
+<h1> Woodland Mist Music Festival</h1>
+
+<h3>most recent stage schedule listed below</h3>
+
+<% if @stages.any? %>
+  <ul>
+  <% @stages.each do |stage| %>
+    <li><a href="/artists/<%= stage.id %>"><%= stage.name %></a></li>
+  <% end %>
+
+  </ul>
+<% else %>
+  <p>There are currently scheduled stages yet. Check back soon!</p>
+<% end %>
+</div>
