@@ -2,4 +2,16 @@
 
 <h3>Hello World</h3>
 
-<p><%= @stages.name %></p>
+<h1>Artists scheduled for: <%= @stages.name %></h1>
+
+<% if @stages.artists %>
+    <ul>
+      <% @stages.artists.each do |x| %>
+        <li><%= x.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are artists for this stage.</p>
+  <% end %>
+
+<a href="/artists/:id/new">Add a new artist</a>

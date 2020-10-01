@@ -24,24 +24,31 @@ get('/') do
   erb(:stages)
 end
 
-get('/albums') do
+get('/stages') do
+  @stages = Stage.all
+  erb(:stage)
+end
+
+
+
+post('/stages/artists') do 
+artist_name = params[:artist_name]
+artist = Artist.new(name, nil)
+artist.save()
+@artists = Artist.all()
+erb(:stages)
+end
   
-  @albums = Album.all
-  erb(:albums)
-end
-
-get('/albums/new') do
-  erb(:new_album)
-end
-
-#get('/albums/:id') do
-  #@album = Album.find(params[:id].to_i())
-  #erb(:album)
-#end
 
 get ('/artists/:id') do 
   @stages = Stage.find(params[:id].to_i())
   erb(:artists)
+end
+
+get ('/artists/:id/new') do 
+@stages = Stage.all
+
+erb(:new_artist)
 end
 
 get ('/artists/') do 
@@ -49,12 +56,17 @@ get ('/artists/') do
   erb(:artists)
 end
 
-post('/albums') do
-  name = params[:album_name]
-  album = Album.new(name, nil)
-  album.save()
-  @albums = Album.all() # Adding this line will fix the error.
-  erb(:albums)
+get ('/artists/new') do 
+erb(:test)
+end
+
+post('/artist/:id') do
+  #@stages = Stage.find(params[:id].to_i())
+  artist = Artist.new(params[:artist_name], 2, nil)
+  artist.save()
+  erb :album
+  
+  erb(:artists)
 end
 
 get('/albums/:id/edit') do
